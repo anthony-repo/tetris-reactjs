@@ -1,18 +1,14 @@
-import Menu from './Menu';
-import { useGameOver } from '../hooks/useGameOver';
+import './Tetris.css';
 
-const Tetris = ({rows, columns}) => {
-    const [gameOver, setGameOver, resetGameOver] = useGameOver();
-    const start = () => {
-        resetGameOver();
-        console.log(`Start game over is ${gameOver}`); 
-    };
+import Board from './Board';
 
+import { useBoard } from '../hooks/useBoard';
+
+const Tetris = ({ rows, columns, setGameOver}) => {
+    const [board, setBoard] = useBoard( {rows, columns} );
     return (
-        <div className ="Tetris">
-            <Menu onClick={start} />
-        </div>
+        <Board board={board}/>
     );
-};
+}
 
 export default Tetris;

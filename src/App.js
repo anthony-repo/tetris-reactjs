@@ -1,11 +1,12 @@
 import './App.css';
 
 import React from 'react';
-import Tetris from './components/Tetris';
+import Game from './components/Game';
 
+//Start running the Tetris App
 const App = () => (
   <div className="App">
-    <Tetris rows={20} columns={10}/>
+    <Game />
   </div>
 )
 
