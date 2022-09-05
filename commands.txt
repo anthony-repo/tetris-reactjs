@@ -1,0 +1,13 @@
+aaaaaaaaa
+//create a react app
+npx create-react-app tetris
+
+//creating docker image
+docker build --tag tetris .
+
+//running react app image in docker container throught port 3000
+
+docker run --publish 3000:3000 tetris
+
+docker-compose build 
+docker-compose run app
