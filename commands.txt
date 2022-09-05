@@ -10,4 +10,4 @@ docker build --tag tetris .
 docker run --publish 3000:3000 tetris
 
 docker-compose build 
-docker-compose run app
+docker-compose run --publish 3000:3000 app

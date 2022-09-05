@@ -1,0 +1,18 @@
+.Menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+    z-index: 100;
+}
+
+
+.button {
+    padding: 30px 80px;
+    font-size: 3em;
+    border-radius: 40px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 50px;
+    cursor: pointer;
+}
+
