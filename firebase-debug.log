@@ -1,0 +1,44 @@
+[debug] [2022-09-06T04:46:04.918Z] ----------------------------------------------------------------------
+[debug] [2022-09-06T04:46:04.919Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-09-06T04:46:04.920Z] CLI Version:   11.8.0
+[debug] [2022-09-06T04:46:04.920Z] Platform:      darwin
+[debug] [2022-09-06T04:46:04.920Z] Node Version:  v18.8.0
+[debug] [2022-09-06T04:46:04.921Z] Time:          Mon Sep 05 2022 21:46:04 GMT-0700 (Pacific Daylight Time)
+[debug] [2022-09-06T04:46:04.921Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-09-06T04:46:04.980Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-09-06T04:46:04.980Z] > authorizing via signed-in user (anthonyshao@gmail.com)
+[debug] [2022-09-06T04:46:04.980Z] [iam] checking project tetris-reactjs for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-09-06T04:46:04.982Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/tetris-reactjs:testIamPermissions [none]
+[debug] [2022-09-06T04:46:04.982Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/tetris-reactjs:testIamPermissions x-goog-quota-user=projects/tetris-reactjs
+[debug] [2022-09-06T04:46:04.982Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tetris-reactjs:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-09-06T04:46:05.222Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/tetris-reactjs:testIamPermissions 200
+[debug] [2022-09-06T04:46:05.223Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tetris-reactjs:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-09-06T04:46:05.224Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/tetris-reactjs [none]
+[debug] [2022-09-06T04:46:05.491Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/tetris-reactjs 200
+[debug] [2022-09-06T04:46:05.491Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/tetris-reactjs {"projectId":"tetris-reactjs","projectNumber":"11736241201","displayName":"Tetris-reactjs","name":"projects/tetris-reactjs","resources":{"hostingSite":"tetris-reactjs","storageBucket":"tetris-reactjs.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_8877711b-a5fe-40c6-85a7-885eb3c8f00d"}
+[info] 
+[info] === Deploying to 'tetris-reactjs'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-09-06T04:46:05.494Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/tetris-reactjs [none]
+[debug] [2022-09-06T04:46:05.868Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/tetris-reactjs 200
+[debug] [2022-09-06T04:46:05.868Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/tetris-reactjs {"projectId":"tetris-reactjs","projectNumber":"11736241201","displayName":"Tetris-reactjs","name":"projects/tetris-reactjs","resources":{"hostingSite":"tetris-reactjs","storageBucket":"tetris-reactjs.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_8877711b-a5fe-40c6-85a7-885eb3c8f00d"}
+[debug] [2022-09-06T04:46:05.870Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/11736241201/sites/tetris-reactjs/versions [none]
+[debug] [2022-09-06T04:46:05.870Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/11736241201/sites/tetris-reactjs/versions {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-09-06T04:46:06.497Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/11736241201/sites/tetris-reactjs/versions 500
+[debug] [2022-09-06T04:46:06.497Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/11736241201/sites/tetris-reactjs/versions {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2022-09-06T04:46:06.585Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500
+  }
+}
