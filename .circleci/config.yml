@@ -4,7 +4,8 @@ jobs:
     build:
         docker:
             - image: cimg/node:18.8.0
-        # Setting env ci = false will ignore warnings for now
+        # Setting env ci = false will ignore warnings 
+        working_directory: ~/Tetris/tetris
         environment:
           CI: false
         steps:
