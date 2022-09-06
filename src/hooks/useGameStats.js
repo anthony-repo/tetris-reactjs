@@ -8,8 +8,7 @@ const buildGameStats = () => ({
 });
 
 export const useGameStats = () => {
-    //const [gameStats, setGameStats] = useState(buildGameStats());
-    const [gameStats] = useState(buildGameStats());
+    const [gameStats, setGameStats] = useState(buildGameStats());
     const addLinesCleared = useCallback(() => {}, []);
 
     return [gameStats, addLinesCleared];

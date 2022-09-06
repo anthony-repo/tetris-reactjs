@@ -4,7 +4,6 @@ jobs:
     build:
         docker:
             - image: cimg/node:18.8.0
-        working_directory: ~/repo
         environment:
           CI: false
         steps:
@@ -26,4 +25,4 @@ jobs:
                   command: npm run build
             - run:
                   name: Firebase Deploy
-                  command: firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+                  command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
