@@ -4,6 +4,7 @@ jobs:
     build:
         docker:
             - image: cimg/node:18.8.0
+        # Setting env ci = false will ignore warnings for now
         environment:
           CI: false
         steps:
