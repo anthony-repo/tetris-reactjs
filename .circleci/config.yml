@@ -5,6 +5,8 @@ jobs:
         docker:
             - image: cimg/node:18.8.0
         working_directory: ~/repo
+        environment:
+          CI: false
         steps:
             - checkout
             # Download and cache dependencies
