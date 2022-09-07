@@ -5,7 +5,6 @@ export const buildBoard = ({ rows, columns }) => {
     const buildRows = Array.from({ length: rows }, () =>
         Array.from({ length: columns }, () => ({ ...defaultCell}))
     );
-    console.log(buildRows);
 
     return {
         rows: buildRows,
