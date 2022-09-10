@@ -7,7 +7,8 @@ import { transferToBoard } from '../utils/Tetrominoes';
 import BoardCell from './BoardCell';
 
 const Preview = ({ tetromino, index }) => {
-    const { shape, className} = tetromino;
+    
+    const { shape, className } = tetromino;
     const board = buildBoard({ rows: 4, columns: 4});
     const style = { top: `${index * 15}vw`};
 

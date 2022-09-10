@@ -9,7 +9,7 @@ export const useGameOver = () => {
     
     const resetGameOver = useCallback(() => {
         setGameOver(false);
-    });
+    }, []);
 
     return [GameOver, setGameOver, resetGameOver];
 }
