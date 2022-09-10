@@ -15,8 +15,7 @@ const Tetris = ({ rows, columns, setGameOver}) => {
     const [player, setPlayer, resetPlayer] = usePlayer();
     const [board, setBoard] = useBoard( {
         rows, columns, player, resetPlayer, addLinesCleared });
-
-
+    console.log(player);
 
     return (
         <div className="Tetris">

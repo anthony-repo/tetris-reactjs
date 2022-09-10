@@ -38,13 +38,9 @@ const GameController = ({
     }
 
 
-
-
-
     return (
         <input 
             className="GameController" 
-            type="text"
             onKeyDown={handleInput}
             autoFocus
         />
