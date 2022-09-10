@@ -25,7 +25,6 @@ const buildPlayer = (previousPlayer) => {
 
 export const usePlayer = () => {
     const [player, setPlayer] = useState(buildPlayer());
-    const previousPlayer = useRef(null);
 
     const resetPlayer = useCallback(() => {
         setPlayer((previousPlayer) => buildPlayer(previousPlayer));
