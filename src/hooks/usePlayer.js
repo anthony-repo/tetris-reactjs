@@ -27,10 +27,6 @@ export const usePlayer = () => {
     const [player, setPlayer] = useState(buildPlayer());
     const previousPlayer = useRef(null);
 
-    useEffect(() => {
-        previousPlayer.current = player;
-    }, [player])
-
     const resetPlayer = useCallback(() => {
         setPlayer((previousPlayer) => buildPlayer(previousPlayer));
     }, []);
