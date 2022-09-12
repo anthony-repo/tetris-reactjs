@@ -1,17 +1,24 @@
 
-import { isValidMovement } from './checkValidMovement'
+import { isValidMovement} from './checkValidMovement'
 
 export const moveTetromino = ({board, player, setPlayer, movement}) => {
     const newRow = player.position.row + movement.row;
     const newColumn = player.position.column + movement.column;
     const position = {row: newRow, column: newColumn};
-    console.log(position);
     const shape = player.tetromino.shape;
-
-    if (!isValidMovement({ board, position, shape})) {
-            return false;
+    let collided = false;
+  
+    
+    if (!isValidMovement({ board, position, shape })) {
+        if (movement.row === 1) {
+            collided = true;
+            setPlayer({ ...player, collided});
+        }
+        return;
     }
+
     setPlayer({ ...player, position: position});
+    
 };
 
 export default moveTetromino;
