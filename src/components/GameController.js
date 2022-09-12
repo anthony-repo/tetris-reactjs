@@ -1,7 +1,9 @@
 import "./GameController.css"
 
+import moveTetromino from '../utils/moveTetromino'
 import rotateTetromino from '../utils/rotateTetromino';
 import { mappedInput, Action } from '../utils/InputMapping';
+
 
 const GameController = ({
     board,
@@ -12,7 +14,6 @@ const GameController = ({
 }) => {
     const handleInput = ( { code } ) => {
         const keyPressed = mappedInput(code);
-        console.log(code);
         if (keyPressed === Action.Quit) {
             setGameOver(true);
         }
@@ -20,22 +21,26 @@ const GameController = ({
             console.log(keyPressed);
         }
         if (keyPressed === Action.slowDrop) {
-            console.log(keyPressed);
+            const movement = {row: 1, column: 0};
+            moveTetromino({ board, player, setPlayer, movement})
         }
         if (keyPressed === Action.fastDrop) {
             console.log(keyPressed);
         }
         if (keyPressed === Action.moveLeft) {
-            console.log(keyPressed);
+            const movement = {row: 0, column: -1};
+            moveTetromino({ board, player, setPlayer, movement})
         }
         if (keyPressed === Action.moveRight) {
-            console.log(keyPressed);
+            const movement = {row: 0, column: 1};
+            moveTetromino({ board, player, setPlayer, movement})
         }
         if (keyPressed === Action.Rotate) {
             rotateTetromino({ board, player, setPlayer });
         }
         
     }
+
 
 
     return (

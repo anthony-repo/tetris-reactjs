@@ -1,5 +1,9 @@
 
-  
+import { isValidMovement } from './checkValidMovement'
+
+
+
+
 export const rotateTetromino = ({ board, player, setPlayer }) => {
 
 
@@ -7,9 +11,14 @@ export const rotateTetromino = ({ board, player, setPlayer }) => {
         .map((_, col) => 
             player.tetromino.shape.map(row => row[col]));
     shape.map(row => row.reverse());
-
-    setPlayer({ ...player, tetromino: { ...player.tetromino, shape} });
-};
+    const position = player.position;
+    if (isValidMovement({ board, position, shape })) {
+        setPlayer({ ...player, tetromino: { ...player.tetromino, shape} });
+    } else {
+        return false;
+    }
+}
+   
 
 
   
