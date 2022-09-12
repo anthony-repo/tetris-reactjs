@@ -4,6 +4,7 @@ import moveTetromino from '../utils/moveTetromino'
 import rotateTetromino from '../utils/rotateTetromino';
 import { mappedInput, Action } from '../utils/InputMapping';
 
+import { useInterval } from '../hooks/useInterval';
 
 const GameController = ({
     board,
@@ -12,8 +13,15 @@ const GameController = ({
     setGameOver,
     setPlayer   
 }) => {
+    useInterval(() => {
+        const movement = {row: 1, column: 0};
+        moveTetromino({ board, player, setPlayer, movement});
+    }, 1000);
+
     const handleInput = ( { code } ) => {
         const keyPressed = mappedInput(code);
+        console.log(code);
+        console.log(keyPressed);
         if (keyPressed === Action.Quit) {
             setGameOver(true);
         }
@@ -41,14 +49,13 @@ const GameController = ({
         
     }
 
-
-
     return (
-        <input 
-            className="GameController" 
-            onKeyDown={handleInput}
-            autoFocus
-        />
+        <div className="GameController"
+            role="button"
+            tabIndex="0"
+            onKeyDown={handleInput}>
+                button
+        </div>
     );
 }
 

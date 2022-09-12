@@ -1,19 +1,23 @@
 .GameStats {
     position: absolute;
     width: 25vw;
+    left: 65vw;
+    margin-top: -45vh;
+    clear: both;
     /*ensure no dots on the list*/
     list-style-type: none; 
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);    
 }
 
 .GameStats_info {
     right: 0;
     bottom: 0;
+    font-size: 2vw;
     text-align: left;
 }
 
 .GameStats .value {
-    font-size: 2.5rem;
+    font-size: 3vw;
     margin-bottom: 0.5em;
     color: rgba(255, 255, 255, 1);
 }

@@ -8,6 +8,9 @@
     font-family: sans-serif;
     text-align: center;
     color:white;
-    background-color:black;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
     padding: 40px;
   }
