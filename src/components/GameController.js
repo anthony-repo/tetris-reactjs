@@ -44,6 +44,7 @@ const GameController = ({
             moveTetromino({ board, player, setPlayer, movement})
         }
         if (keyPressed === Action.Rotate) {
+            //rotate the tetromino
             rotateTetromino({ board, player, setPlayer });
         }
         
