@@ -17,14 +17,13 @@ const Game = () => {
     }
 
     return (
-        <div className ="Tetris">
+        <div className ="Game">
             {gameOver ?  (
                 <Menu onClick={start} />
             ) : (
                 //when game is not over, a tetris game should be rendered
                 <Tetris rows={rows} columns={columns} setGameOver={setGameOver}/>
             )}
-            
         </div>
     );
 };
