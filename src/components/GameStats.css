@@ -1,10 +1,9 @@
 .GameStats {
-    position: absolute;
+        
     width: 25vw;
     left: 65vw;
-    margin-top: -45vh;
+    margin-top: 10px;
     clear: both;
-    /*ensure no dots on the list*/
     list-style-type: none; 
     color: rgba(255, 255, 255, 0.5);    
 }

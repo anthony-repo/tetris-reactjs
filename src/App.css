@@ -4,13 +4,13 @@
     box-sizing: border-box;
   }
   
-  .App {
-    font-family: sans-serif;
-    text-align: center;
-    color:white;
-    background-color: black;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    padding: 40px;
-  }
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  color:white;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px;
+}

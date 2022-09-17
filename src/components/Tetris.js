@@ -25,8 +25,10 @@ const Tetris = ({ rows, columns, setGameOver}) => {
                 setGameOver={setGameOver}
                 setPlayer={setPlayer}
                 />
-            <Previews tetrominoes={player.tetrominoes} />
-            <GameStats gameStats={gameStats} />
+            <div className="Tetris-sidebar">
+                <Previews tetrominoes={player.tetrominoes} />
+                <GameStats gameStats={gameStats} />
+            </div>
         </div>
     );
 }
