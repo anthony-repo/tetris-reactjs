@@ -3,7 +3,6 @@ import './Tetris.css';
 import Board from './Board';
 import GameStats from './GameStats';
 import Previews from './Previews';
-import GameController from './GameController';
 
 import { useBoard } from '../hooks/useBoard';
 import { useGameStats } from '../hooks/useGameStats';
@@ -18,18 +17,18 @@ const Tetris = ({ rows, columns, setGameOver}) => {
     const [board, setBoard] = useBoard( {
         rows, columns, player, resetPlayer, addLinesCleared });
     
+    
     return (
         <div className="Tetris">
-            <Board board={board} />
-            <Previews tetrominoes={player.tetrominoes} />
-            <GameStats gameStats={gameStats} />
-            <GameController 
-                board={board}
-                gameStats={gameStats}
+            <Board board={board}
                 player={player}
                 setGameOver={setGameOver}
                 setPlayer={setPlayer}
                 />
+            <div className="Tetris-sidebar">
+                <Previews tetrominoes={player.tetrominoes} />
+                <GameStats gameStats={gameStats} />
+            </div>
         </div>
     );
 }
