@@ -25,6 +25,8 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
         setFocused(true);
         setIsPause(false);
     }
+
+    
     
 
     //styling the board by setting up a grid of 20 x 10
@@ -40,7 +42,8 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
     
     const handleInput = ( { code} ) => {
 
-    
+        
+
         const keyPressed = mappedInput(code);
         if (keyPressed === Action.Quit) {
             setGameOver(true);
@@ -54,9 +57,9 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
                 resumeDropTime();
             }
         }
+        
         if (dropTime && !isPause) {
             if (keyPressed === Action.slowDrop) {
-
                 const movement = {row: 1, column: 0};
                 moveTetromino({ board, player, setPlayer, movement})
             }
