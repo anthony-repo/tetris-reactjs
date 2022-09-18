@@ -7,21 +7,24 @@ import PauseMenu from './PauseMenu';
 import { useState, useEffect, useRef } from 'react';
 import { mappedInput, Action } from '../utils/InputMapping';
 import { useInterval } from '../hooks/useInterval';
+import { useDropTime } from '../hooks/useDropTime';
 
 
-const Board = ( { board, player, setGameOver, setPlayer } ) => {
+const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
     const [focused, setFocused] = useState(true);
     const [isPause, setIsPause] = useState(false);
+    const [dropTime, pasueDropTime, resumeDropTime] = useDropTime({ gameStats });
     useEffect(() => {
         document.getElementById('Board').focus();
     }, [])  
-    const onBlur = () => setFocused(false);
+    const onBlur = () => {
+        setFocused(false);
+        pasueDropTime();
+    }
     const onFocus = () => {
         setFocused(true);
         setIsPause(false);
     }
-    
-
     
 
     //styling the board by setting up a grid of 20 x 10
@@ -33,42 +36,49 @@ const Board = ( { board, player, setGameOver, setPlayer } ) => {
     useInterval(() => {
         const movement = {row: 1, column: 0};
         moveTetromino({ board, player, setPlayer, movement});
-    }, 1000);
+    }, dropTime);
     
-    const handleInput = ( { code } ) => {
+    const handleInput = ( { code} ) => {
 
     
         const keyPressed = mappedInput(code);
-        
         if (keyPressed === Action.Quit) {
             setGameOver(true);
         }
         if (keyPressed === Action.Pause) {
-            setIsPause(true);
+            if (dropTime) {
+                pasueDropTime();
+                setIsPause(true);
+            } else {
+                setIsPause(false);
+                resumeDropTime();
+            }
         }
-        if (keyPressed === Action.slowDrop) {
-            const movement = {row: 1, column: 0};
-            moveTetromino({ board, player, setPlayer, movement})
-        }
-        if (keyPressed === Action.fastDrop) {
-            console.log(keyPressed);
-        }
-        if (keyPressed === Action.moveLeft) {
-            const movement = {row: 0, column: -1};
-            moveTetromino({ board, player, setPlayer, movement})
-        }
-        if (keyPressed === Action.moveRight) {
-            const movement = {row: 0, column: 1};
-            moveTetromino({ board, player, setPlayer, movement})
-        }
-        if (keyPressed === Action.Rotate) {
-            //rotate the tetromino
-            rotateTetromino({ board, player, setPlayer });
+        if (dropTime && !isPause) {
+            if (keyPressed === Action.slowDrop) {
+
+                const movement = {row: 1, column: 0};
+                moveTetromino({ board, player, setPlayer, movement})
+            }
+            if (keyPressed === Action.fastDrop) {
+                console.log(keyPressed);
+            }
+            if (keyPressed === Action.moveLeft) {
+                const movement = {row: 0, column: -1};
+                moveTetromino({ board, player, setPlayer, movement})
+            }
+            if (keyPressed === Action.moveRight) {
+                const movement = {row: 0, column: 1};
+                moveTetromino({ board, player, setPlayer, movement})
+            }
+            if (keyPressed === Action.Rotate) {
+                //rotate the tetromino
+                rotateTetromino({ board, player, setPlayer });
+            }
         }
         
     }
 
-    
     useEffect(() => {
         if (focused) {
           console.log("element has focus");
@@ -87,8 +97,6 @@ const Board = ( { board, player, setGameOver, setPlayer } ) => {
         //when a tetromino piece appears on the board,
         //the board renders the cells which form the tetromino piece
         <div>
-
-            
             <div className="Board" 
                 id="Board" 
                 role="button"
@@ -107,7 +115,7 @@ const Board = ( { board, player, setGameOver, setPlayer } ) => {
                 }
                 
             </div>
-            {isPause ? <PauseMenu setIsPause={setIsPause} setGameOver={setGameOver}/> : null}
+            {isPause ? <PauseMenu setIsPause={setIsPause} setGameOver={setGameOver} resumeDropTime={resumeDropTime}/> : null}
         </div>
         
     )
