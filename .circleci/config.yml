@@ -7,7 +7,6 @@ jobs:
         # Setting env ci = false will ignore warnings 
         working_directory: ~/repo
         environment:
-        
           CI: false
         steps:
             - checkout
@@ -20,9 +19,10 @@ jobs:
                   name: Install Dependencies
                   command: npm install
             - save_cache:
-                  key: v1-npm-deps-{{ checksum "package-lock.json" }}
                   paths:
                       - ./node_modules
+                  key: 
+                      - v1-dependencies-{{ checksum "package-lock.json" }}
             - run:
                   name: Build
                   command: npm run build
