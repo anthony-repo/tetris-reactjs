@@ -15,7 +15,7 @@ const Tetris = ({ rows, columns, setGameOver}) => {
     const [player, setPlayer, resetPlayer] = usePlayer();
     //board is the status of the current board
     const [board, setBoard] = useBoard( {
-        rows, columns, player, resetPlayer, addLinesCleared });
+        rows, columns, player, setPlayer, resetPlayer, addLinesCleared });
     
     
     return (

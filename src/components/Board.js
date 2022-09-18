@@ -4,7 +4,8 @@ import BoardCell from './BoardCell';
 import moveTetromino from '../utils/moveTetromino'
 import rotateTetromino from '../utils/rotateTetromino';
 import PauseMenu from './PauseMenu';
-import { useState, useEffect, useRef } from 'react';
+import handleFastDropping from '../utils/handleFastDropping';
+import { useState, useEffect } from 'react';
 import { mappedInput, Action } from '../utils/InputMapping';
 import { useInterval } from '../hooks/useInterval';
 import { useDropTime } from '../hooks/useDropTime';
@@ -26,8 +27,6 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
         setIsPause(false);
     }
 
-    
-    
 
     //styling the board by setting up a grid of 20 x 10
     const boardStyle = {
@@ -40,9 +39,7 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
         moveTetromino({ board, player, setPlayer, movement});
     }, dropTime);
     
-    const handleInput = ( { code} ) => {
-
-        
+    const handleInput = ( { code } ) => {
 
         const keyPressed = mappedInput(code);
         if (keyPressed === Action.Quit) {
@@ -63,8 +60,12 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
                 const movement = {row: 1, column: 0};
                 moveTetromino({ board, player, setPlayer, movement})
             }
+            let position = player.position;
             if (keyPressed === Action.fastDrop) {
-                console.log(keyPressed);
+                
+                const position = handleFastDropping({ board, player, setPlayer });
+                
+                setPlayer({...player, position: position });
             }
             if (keyPressed === Action.moveLeft) {
                 const movement = {row: 0, column: -1};
@@ -89,7 +90,7 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
           console.log("element does NOT have focus");
           setIsPause(true);
         }
-      }, [focused]);
+    }, [focused]);
     
 
 
