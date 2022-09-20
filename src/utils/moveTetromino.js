@@ -1,5 +1,5 @@
 
-import { isValidMovement} from './checkValidMovement'
+import { isValidMovement } from './checkValidMovement'
 
 export const moveTetromino = ({ board, player, setPlayer, movement }) => {
     const newRow = player.position.row + movement.row;
@@ -7,7 +7,7 @@ export const moveTetromino = ({ board, player, setPlayer, movement }) => {
     const position = { row: newRow, column: newColumn };
     const shape = player.tetromino.shape;
     let collided = false;
-  
+    
     
     if (!isValidMovement({ board, position, shape })) {
         if (movement.row > 0) {
@@ -17,7 +17,6 @@ export const moveTetromino = ({ board, player, setPlayer, movement }) => {
         }
         return;
     }
-
     setPlayer({ ...player, position: position });
     return collided;
 };

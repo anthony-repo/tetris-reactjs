@@ -1,6 +1,5 @@
 import { defaultCell } from './Cell';
 import { transferToBoard } from './Tetrominoes';
-import moveTetromino from '../utils/moveTetromino'
 
 //building a rows x columns dimension board with empty cells
 export const buildBoard = ({ rows, columns }) => {
@@ -10,19 +9,22 @@ export const buildBoard = ({ rows, columns }) => {
 
     return {
         rows: buildRows,
-        size: {rows, columns}
+        size: { rows, columns }
     }
 };
 
 
 
-export const nextBoard = ({ board, player, setPlayer, resetPlayer, addLinesCleared }) => {
+export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     const { tetromino, position } = player;
 
     let rows = board.rows.map((row) =>
         row.map((cell) => (cell.occupied ? cell : {...defaultCell}))
     );
 
+    
+
+    
 
     rows = transferToBoard({
         className: tetromino.className,
@@ -31,11 +33,28 @@ export const nextBoard = ({ board, player, setPlayer, resetPlayer, addLinesClear
         rows,
         shape: tetromino.shape
     });
+
+    if (player.collided) {
+        const emptyRow = rows[0].map((_) => ({ ...defaultCell }));
+        rows = rows.reduce((newBoard, row) => {
+            if (row.every((cell) => cell.occupied)) {
+                newBoard.unshift([ ...emptyRow ]);
+            } else {
+                newBoard.push(row);
+            }
+
+        return newBoard;
+
+        }, []);
+    }
+
     
+   
+
     if (player.collided || player.isFastDropping) {
         resetPlayer();
     }
-    
+
     return {
         rows,
         size: { ...board.size }

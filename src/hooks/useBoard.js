@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { buildBoard, nextBoard} from '../utils/BuildBoard';
+import { buildBoard, nextBoard } from '../utils/BuildBoard';
 
 
 export const useBoard = ( {
     rows, columns, player, resetPlayer, addLinesCleared} ) => {
 
-    const [board, setBoard] = useState(buildBoard( { rows, columns } ));
-
+    const [board, setBoard] = useState(buildBoard({ rows, columns }));
     useEffect(() => {
         setBoard((previousBoard) =>
             nextBoard({

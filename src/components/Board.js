@@ -9,9 +9,10 @@ import { useState, useEffect } from 'react';
 import { mappedInput, Action } from '../utils/InputMapping';
 import { useInterval } from '../hooks/useInterval';
 import { useDropTime } from '../hooks/useDropTime';
+import { defaultCell } from '../utils/Cell';
 
 
-const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
+const Board = ({ board, player, setGameOver, setPlayer, gameStats }) => {
     const [focused, setFocused] = useState(true);
     const [isPause, setIsPause] = useState(false);
     const [dropTime, pasueDropTime, resumeDropTime] = useDropTime({ gameStats });
@@ -27,6 +28,12 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
         setIsPause(false);
     }
 
+    useEffect(() => {
+        if (!focused) {
+          setIsPause(true);
+        }
+    }, [focused]);
+
 
     //styling the board by setting up a grid of 20 x 10
     const boardStyle = {
@@ -36,11 +43,10 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
 
     useInterval(() => {
         const movement = {row: 1, column: 0};
-        moveTetromino({ board, player, setPlayer, movement});
+        moveTetromino({ board, player, setPlayer, movement });
     }, dropTime);
     
     const handleInput = ( { code } ) => {
-
         const keyPressed = mappedInput(code);
         if (keyPressed === Action.Quit) {
             setGameOver(true);
@@ -60,9 +66,8 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
                 const movement = {row: 1, column: 0};
                 moveTetromino({ board, player, setPlayer, movement})
             }
-            let position = player.position;
+
             if (keyPressed === Action.fastDrop) {
-                
                 const position = handleFastDropping({ board, player, setPlayer });
                 
                 setPlayer({...player, position: position });
@@ -83,16 +88,25 @@ const Board = ( { board, player, setGameOver, setPlayer, gameStats} ) => {
         
     }
 
-    useEffect(() => {
-        if (focused) {
-          console.log("element has focus");
-        } else {
-          console.log("element does NOT have focus");
-          setIsPause(true);
-        }
-    }, [focused]);
-    
+    let rows;
+    if (player.collided) {
+        const emptyRow = board.rows[0].map((_) => ({ ...defaultCell }));
+        const rows = board.rows.reduce((newBoard, row) => {
+            if (row.every((cell) => cell.occupied)) {
+                newBoard.unshift([ ...emptyRow ]);
+            } else {
+                console.log(row);
+                newBoard.push(row);
+            }
 
+        return newBoard;
+
+        }, []);
+        board = {rows: rows, size: board.size };
+    }
+
+    
+    
 
     return (
         //Rendering the board
