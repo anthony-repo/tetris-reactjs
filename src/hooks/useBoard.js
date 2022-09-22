@@ -3,7 +3,7 @@ import { buildBoard, nextBoard } from '../utils/BuildBoard';
 
 
 export const useBoard = ( {
-    rows, columns, player, resetPlayer, addLinesCleared} ) => {
+    rows, columns, player, setPlayer, resetPlayer, addLinesCleared} ) => {
 
     const [board, setBoard] = useState(buildBoard({ rows, columns }));
     useEffect(() => {
@@ -11,6 +11,7 @@ export const useBoard = ( {
             nextBoard({
                 board: previousBoard,
                 player,
+                setPlayer,
                 resetPlayer,
                 addLinesCleared
             })

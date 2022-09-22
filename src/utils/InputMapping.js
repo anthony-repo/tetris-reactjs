@@ -11,7 +11,7 @@ export const Action = {
 export const Key = {
     ArrowLeft: Action.moveLeft,
     ArrowRight: Action.moveRight,
-    KeyQ: Action.Rotate,
+    ArrowUp: Action.Rotate,
     ArrowDown: Action.slowDrop,
     Space: Action.fastDrop,
     Enter: Action.Pause,

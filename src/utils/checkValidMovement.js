@@ -1,6 +1,6 @@
 
 
-export const isValidMovement= ({ board, position, shape}) => {
+export const isValidMovement= ({ board, position, shape }) => {
     for (let y = 0; y < shape.length; y++) {
         for (let x = 0; x < shape[0].length; x++) {
             if (shape[y][x]) {

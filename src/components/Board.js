@@ -43,7 +43,10 @@ const Board = ({ board, player, setGameOver, setPlayer, gameStats }) => {
 
     useInterval(() => {
         const movement = {row: 1, column: 0};
-        moveTetromino({ board, player, setPlayer, movement });
+        const collided = moveTetromino({ board, player, setPlayer, movement });
+        if (collided && player.position.row === 0) {
+            setGameOver(true);
+        };
     }, dropTime);
     
     const handleInput = ( { code } ) => {
@@ -88,22 +91,7 @@ const Board = ({ board, player, setGameOver, setPlayer, gameStats }) => {
         
     }
 
-    let rows;
-    if (player.collided) {
-        const emptyRow = board.rows[0].map((_) => ({ ...defaultCell }));
-        const rows = board.rows.reduce((newBoard, row) => {
-            if (row.every((cell) => cell.occupied)) {
-                newBoard.unshift([ ...emptyRow ]);
-            } else {
-                console.log(row);
-                newBoard.push(row);
-            }
-
-        return newBoard;
-
-        }, []);
-        board = {rows: rows, size: board.size };
-    }
+    
 
     
     
